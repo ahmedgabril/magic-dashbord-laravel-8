@@ -128,6 +128,11 @@
 
     $(".change-mood").on("click",function(){
      $('body').toggleClass("dark-mode");
+     $('.main-header').toggleClass("navbar-dark");
+     $('.main-sidebar').toggleClass("sidebar-dark-primary");
+
+
+
  });
 });
 </script

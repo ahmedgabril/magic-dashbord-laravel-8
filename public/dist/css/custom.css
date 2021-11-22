@@ -184,3 +184,9 @@ margin-right: -1px!important;
   .info-box {
     padding:0px!important;
   }
+  a:hover {
+    color: #28a745;}
+    .bg-warning, .bg-warning>a {
+      color: #ffffff!important;
+  }
+
