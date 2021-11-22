@@ -181,3 +181,6 @@ margin-right: -1px!important;
 .dropdown-menu {
 
   text-align: right;}
+  .info-box {
+    padding:0px!important;
+  }

@@ -15,7 +15,7 @@
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="mr-auto navbar-nav" style="margin-left: 55px">
+    <ul class="mr-auto navbar-nav" style="margin-left: 70px">
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -68,38 +68,8 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
 
-<!--
-    <div class="d-md-inline-block show" style="height: 55px; margin-top:-6px">
-        <span class="d-inline-block  nav-bar-icon text-center mx-l" style="position: relative;width: 50px;cursor: pointer;padding: 9px 0px 0px;text-align: center;height: 55px;border-radius: 5px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <img src="https://nafezly-production.s3.eu-west-3.amazonaws.com/uploads/avatars/small/18986_1637229275_619622dbd6dfe.jpg" style="width: 36px;border-radius: 50%!important;padding: 0px;height: 36px;border:0px solid #fff;background: var(--bg-main-bg)" alt="الصورة الشخصية">
-        <div class="dropdown-menu p-0 show" aria-labelledby="dropdownMenuButton" style=" padding: 0px 0px ;box-shadow: 0 6px 12px rgba(0,0,0,0.175); left: 0px;top: 58px;border-radius: 0px 0px 3px 3px;overflow: hidden;  ">
-        <span class="fas fa-caret-up" style="color:  var(--bg-main-bg);position: absolute;top:-13px;left: 40%;font-size: 21px"></span>
-        <div style="  padding: 7px 0px ;background: #343a40" class="col-12 row text-right dropdown-items">
-        <ul style="list-style: none;padding: 0px 0px;width: 100%;margin-bottom: 0px">
-        <a href="#" class="py-2 px-3  d-block hover-darker change-mood">
-        <li style="font-size: 14px;color: var(--bg-color-0)"> <span class="fas fa-moon ml-2"></span> تغيير الوضع </li>
-        </a>
-        <a href="/" class="py-2 px-3 d-block hover-darker active">
-        <li style="font-size: 14px;color: var(--bg-color-0)"> <span class="fas fa-home ml-2"></span>لوحة التحكم</li>
-        </a>
 
-        <a href="https://nafezly.com/u/ahmedgabril" class="py-2 px-3  d-block hover-darker">
-        <li style="font-size: 14px;color: var(--bg-color-0)"> <span class="fas fa-user ml-2"></span> حسابي الشخصي</li>
-        </a>
-
-        <livewire:logout/>
-        </ul>
-        </div>
-        </div>
-        </span>
-    </div>
--->
 
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false" style="margin-top:-5px">
@@ -108,6 +78,9 @@
     </a>
     <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" >
         <ul style="list-style: none;padding: 0px 0px;width: 100%;margin-bottom: 0px">
+            <a href="#" class="py-2 px-3  d-block hover-darker change-mood" data-widget="fullscreen"  role="button">
+                <li style="font-size: 14px;color: var(--bg-color-0)"> <span class="fas fa-expand-arrows-alt ml-2"></span> تكبير الشاشه </li>
+                </a>
             <a href="#" class="py-2 px-3  d-block hover-darker change-mood">
             <li style="font-size: 14px;color: var(--bg-color-0)"> <span class="fas fa-moon ml-2"></span> تغيير الوضع </li>
             </a>

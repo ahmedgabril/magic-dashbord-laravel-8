@@ -68,7 +68,8 @@
 
   @livewireStyles
 </head>
-<body class="sidebar-mini  dark-mode layout-fixed overflow-hidden"cz-shortcut-listen="true" style="direction:rtl ;text-align:right">
+
+<body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed control-sidebar-slide-open" cz-shortcut-listen="true" style="direction:rtl ;text-align:right!important">
 <div class="wrapper">
 
     <!-- Preloader -->
@@ -91,7 +92,7 @@
 
 
     <!-- /.content-header -->
-    <div class="content-wrapper" style="min-height: 1602px;">
+    <div class="content-wrapper" style="min-height: 269px;">
       <!-- Content Header (Page header) -->
 
       <!-- /.content-header -->
@@ -121,16 +122,15 @@
 <!-- jQuery UI 1.11.4 -->
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<!--
+
 <script>
   $(function() {
 
-    $(".loader").on("load",function(){
-    $(this).addClass("disaper");
-
+    $(".change-mood").on("click",function(){
+     $('body').toggleClass("dark-mode");
  });
 });
-</script>-->
+</script
 
 <!-- Bootstrap 4 -->
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -159,7 +159,13 @@
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
+<script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="/plugins/raphael/raphael.min.js"></script>
+<script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<script src="/plugins/chart.js/Chart.min.js"></script>
 <script src="/dist/js/demo.js"></script>
+<script src="dist/js/pages/dashboard2.js"></script>
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 

@@ -23,9 +23,8 @@ class Login extends Component
 
 
             'data.email.required' => 'البريد الالكترونى مطلوب',
-            'data.email.email' =>'ادخل بريد الكترونى صحيح يحتوى على @ و.',
+            'data.email.email' =>'ادخل بريد الكترونى صحيح',
             'data.password.required' =>'كلمه المرور مطلوبه',
-
 
 
         ]);
@@ -38,23 +37,25 @@ class Login extends Component
     public  function login()
     {
         $this->validate([
-            'data.email' =>'required|email',
-            'data.password' =>'required',
+            'data.email' => 'required|email',
+            'data.password' => 'required',
         ],[
 
 
             'data.email.required' => 'البريد الالكترونى مطلوب',
+            'data.email.email' =>'ادخل بريد الكترونى صحيح',
             'data.password.required' =>'كلمه المرور مطلوبه',
-            'data.email.email' => 'ادخل بريد الكترونى صحيح يحتوى على @ و.',
-
 
 
         ]);
     Auth::attempt();
     if (Auth::attempt(['email' => $this->data['email'], 'password' => $this->data['password']], $this->data['remember_token'])) {
+        session()->regenerate();
         return redirect()->route('home');
     }
 
-
+    return back()->withErrors([
+        'email' => 'البيانات المدخله غير صحيحه',
+    ]);
     }
 }
