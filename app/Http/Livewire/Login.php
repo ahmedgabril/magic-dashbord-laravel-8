@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,14 +49,19 @@ class Login extends Component
 
 
         ]);
-    Auth::attempt();
+   // Auth::attempt();
+
     if (Auth::attempt(['email' => $this->data['email'], 'password' => $this->data['password']], $this->data['remember_token'])) {
+        $log = auth()->user()->name;
         session()->regenerate();
-        return redirect()->route('home');
+
+        return redirect()->route('home')->with("message",$log);
+
     }
 
-    return back()->withErrors([
-        'email' => 'البيانات المدخله غير صحيحه',
-    ]);
-    }
+
+  $this->emit("errorhand");
+
+
+  }
 }

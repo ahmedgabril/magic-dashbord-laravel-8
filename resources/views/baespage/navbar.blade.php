@@ -78,18 +78,19 @@
     </a>
     <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" >
         <ul style="list-style: none;padding: 0px 0px;width: 100%;margin-bottom: 0px">
-            <a href="#" class="py-2 px-3  d-block hover-darker change-mood" data-widget="fullscreen"  role="button">
-                <li style="font-size: 14px;color: var(--bg-color-0)"> <span class="fas fa-expand-arrows-alt ml-2"></span> تكبير الشاشه </li>
+            <a href="/home" class="py-2 px-3 d-block dropdown-item hover-darker  ">
+                <li style="font-size: 14px;"> <span class="fas fa-home ml-2"></span>لوحة التحكم</li>
                 </a>
-            <a href="#" class="py-2 px-3  d-block hover-darker change-mood">
-            <li style="font-size: 14px;color: var(--bg-color-0)"> <span class="fas fa-moon ml-2"></span> تغيير الوضع </li>
-            </a>
-            <a href="/home" class="py-2 px-3 d-block hover-darker active">
-            <li style="font-size: 14px;color: var(--bg-color-0)"> <span class="fas fa-home ml-2"></span>لوحة التحكم</li>
+            <a href="#" class="py-2 px-3 dropdown-item d-block hover-darker " data-widget="fullscreen"  role="button">
+                <li style="font-size: 14px"> <span class="fas fa-expand-arrows-alt ml-2"></span> تكبير الشاشه </li>
+                </a>
+            <a href="#" class="py-2 px-3 dropdown-item d-block hover-darker " id="change-mood">
+            <li style="font-size: 14px;"> <span class="fas fa-moon ml-2 mode"></span>  تغير الوضع </li>
             </a>
 
-            <a href="https://nafezly.com/u/ahmedgabril" class="py-2 px-3  d-block hover-darker">
-            <li style="font-size: 14px;color: var(--bg-color-0)"> <span class="fas fa-user ml-2"></span> حسابي الشخصي</li>
+
+            <a href="https://nafezly.com/u/ahmedgabril" class="py-2 px-3 dropdown-item d-block hover-darker">
+            <li style="font-size: 14px;"> <span class="fas fa-user ml-2"></span> حسابي الشخصي</li>
             </a>
 
             <livewire:logout/>

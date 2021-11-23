@@ -12,7 +12,13 @@
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+
+  <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">-->
+    @stack('css')
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+
     <style>
 
    html,body{
@@ -30,8 +36,12 @@
   <!-- jQuery -->
   <script src="/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
+
   <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/plugins/sweetalert2/sweetalert2.min.js"></script>
+  <script src="/plugins/toastr/toastr.min.js"></script>
   <!-- AdminLTE App -->
+  @stack('sc')
   <script src="/dist/js/adminlte.min.js"></script>
 
 

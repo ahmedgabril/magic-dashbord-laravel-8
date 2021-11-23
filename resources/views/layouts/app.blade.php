@@ -12,7 +12,8 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-
+  <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 
 
   @stack('styles')
@@ -27,6 +28,8 @@
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 
   <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}">
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+
   <style>
     html,body{
         font-family: 'Cairo', sans-serif!important;
@@ -40,7 +43,7 @@
 
 
        }
-       /*.loader{
+       .loader{
            position: fixed;
            top :0;
            left:0;
@@ -54,35 +57,43 @@
 
        }
        .disaper{
-           animation: pre 1s forwards;
+           animation: pre 1.6s forwards;
 
 
        }
        @keyframes pre {
+        50%{
+               opacity: 1.1;
+
+           }
+           70%{
+               opacity: 0.4;
+
+           }
            100%{
                opacity: 0;
                visibility: hidden;
            }
-       }*/
+       }
        </style>
 
   @livewireStyles
 </head>
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed control-sidebar-slide-open" cz-shortcut-listen="true" style="direction:rtl ;text-align:right!important">
-<div class="wrapper">
+    <div class="loader disaper">
+        <div class="text-light" style="margin-right:-97px">انتظر ثوانى...</div>
+        <img  src="/dist/img/preloder.gif" alt="ahmedgabril" height="170" width="170">
 
+     </div>
+    <div class="wrapper">
     <!-- Preloader -->
     <!--
     <div class="preloader flex-column justify-content-center align-items-center bg-dark">
       <img class="animation__shake" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
     </div>
   -->
-    <!--<div class="loader disaper">
-      <div class="text-light" style="margin-right:-97px">انتظر ثوانى...</div>
-      <img  src="/dist/img/preloder.gif" alt="ahmedgabril" height="170" width="170">
 
-    </div>-->
     <!-- BEGIN: Header-->
     @include("baespage/navbar")
 
@@ -111,7 +122,6 @@
       <b>Version</b> 1.1.0
     </div>
   </footer>-->
-
 </div>
 <!-- ./wrapper -->
 @livewireScripts
@@ -120,26 +130,65 @@
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-
+<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
 <script>
   $(function() {
+    toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": true,
+  "progressBar": true,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
 
-    $(".change-mood").on("click",function(){
-     $('body').toggleClass("dark-mode");
-     $('.main-header').toggleClass("navbar-dark");
-     $('.main-sidebar').toggleClass("sidebar-dark-primary");
-
-
-
+$(".loader").on("load",function(){
+    $(this).addClass("disaper");
  });
-});
-</script
+   @if (session()->has('message'))
+   const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 10000000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'welecom ..{{ session('message') }} '
+})
+/*
+Swal.fire({
+  position: 'top-start',
+  icon: 'success',
+  title: 'welecom ..{{ session('message') }} ',
+  showConfirmButton: false,
+  timer: 2500
+})*/
+@endif
+
+  });
+</script>
 
 <!-- Bootstrap 4 -->
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script src="/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="/plugins/toastr/toastr.min.js"></script>
 <!-- ChartJS -->
 
 

@@ -76,3 +76,26 @@
     <!-- /.login-card-body -->
   </div>
 <div>
+@push('sc')
+<script>
+  $(function() {
+ Livewire.on('errorhand',function(event){
+
+
+Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: 'البيانات المدخله غير صحيحه',
+
+//footer: '<a href="">Why do I have this issue?</a>'
+});
+
+
+
+
+  });
+
+
+  });
+</script>
+ @endpush

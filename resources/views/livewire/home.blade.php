@@ -7,10 +7,10 @@
             </div><!-- /.col -->
             <div class="col-sm-8">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item active"><a class="ml-3" href="/home" style="color:#1137ef">الرئيسه</a>/</li>
+                <li class="breadcrumb-item active"><a class="ml-3" href="/home" >الرئيسه</a>/</li>
 
-                <li class="breadcrumb-item active"> <a href="/home" style="color:#1137ef">التراخيص</a></li>
-                <li class="breadcrumb-item active"> <a  href="/home" style="color:#1137ef">الموظفين</a></li>
+                <li class="breadcrumb-item active"> <a href="/home" >التراخيص</a></li>
+                <li class="breadcrumb-item active"> <a  href="/home" >الموظفين</a></li>
 
               </ol>
             </div><!-- /.col -->
