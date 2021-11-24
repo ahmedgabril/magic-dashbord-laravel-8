@@ -12,9 +12,6 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-  <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
-
 
   @stack('styles')
 
@@ -28,7 +25,9 @@
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 
   <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}">
-  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+
+  <!--<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
+
 
   <style>
     html,body{
@@ -78,12 +77,15 @@
        </style>
 
   @livewireStyles
+
+
+
 </head>
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed control-sidebar-slide-open" cz-shortcut-listen="true" style="direction:rtl ;text-align:right!important">
     <div class="loader disaper">
         <div class="text-light" style="margin-right:-97px">انتظر ثوانى...</div>
-        <img  src="/dist/img/preloder.gif" alt="ahmedgabril" height="170" width="170">
+        <img  src="/dist/img/pre3.gif" alt="ahmedgabril" height="170" width="170" >
 
      </div>
     <div class="wrapper">
@@ -124,33 +126,20 @@
   </footer>-->
 </div>
 <!-- ./wrapper -->
+<script src="/plugins/jquery/jquery.min.js"></script>
+
 @livewireScripts
 
-
 <!-- jQuery -->
-<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="/js/app.js"></script>
+
 <!-- jQuery UI 1.11.4 -->
 <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
 <script>
+
   $(function() {
-    toastr.options = {
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": true,
-  "progressBar": true,
-  "positionClass": "toast-top-right",
-  "preventDuplicates": false,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
 
 $(".loader").on("load",function(){
     $(this).addClass("disaper");
@@ -160,7 +149,7 @@ $(".loader").on("load",function(){
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
-  timer: 10000000,
+  timer: 4500,
   timerProgressBar: true,
   didOpen: (toast) => {
     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -187,8 +176,7 @@ Swal.fire({
 
 <!-- Bootstrap 4 -->
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/plugins/sweetalert2/sweetalert2.min.js"></script>
-<script src="/plugins/toastr/toastr.min.js"></script>
+
 <!-- ChartJS -->
 
 

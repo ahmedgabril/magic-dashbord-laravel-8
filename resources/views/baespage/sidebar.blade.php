@@ -8,7 +8,14 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img src="https://nafezly-production.s3.eu-west-3.amazonaws.com/uploads/avatars/small/18986_1637229275_619622dbd6dfe.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+              <a href="#" class="d-block">{{substr(auth()->user()->name,0,20)}}</a>
+            </div>
+          </div>
       <!-- SidebarSearch Form -->
       <!--<div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
@@ -49,12 +56,12 @@
 
 
 
-
+           @can('ادره اصدار التراخيص')
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                ادره اصدار التراخيص
+                 ادره اصدار التراخيص
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -77,7 +84,8 @@
 
             </ul>
           </li>
-
+        @endcan
+        @can('النماذج')
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
@@ -105,28 +113,34 @@
 
             </ul>
           </li>
-
+         @endcan
+         @can('الموظفين والصلاحيات')
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-            الموظفين & والصلاحيات
+            الموظفين والصلاحيات
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+                @can('اداره المستخدمين')
+                   <li class="nav-item">
                 <a href="pages/UI/general.html" class="nav-link">
                   <i class="far fa-user nav-icon"></i>
                   <p>اداره المستخدمين </p>
                 </a>
               </li>
-              <li class="nav-item">
+                @endcan
+               @can('الصلاحيات')
+               <li class="nav-item">
                 <a href="pages/UI/icons.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>الصلاحيات </p>
                 </a>
               </li>
+               @endcan
+
               <li class="nav-item">
                 <a href="pages/UI/icons.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -138,12 +152,14 @@
 
             </ul>
           </li>
+         @endcan
+         @can('الاعدادت')
 
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="fas fa-cogs nav-icon"></i>
               <p>
-              الاعددات
+                الاعدادت
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -165,6 +181,7 @@
 
             </ul>
           </li>
+          @endcan
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
