@@ -119,14 +119,14 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-            الموظفين والصلاحيات
+                المستخدمين والصلاحيات
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
                 @can('اداره المستخدمين')
                    <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
+                <a href="{{route('getuser')}}" class="nav-link">
                   <i class="far fa-user nav-icon"></i>
                   <p>اداره المستخدمين </p>
                 </a>
@@ -134,19 +134,14 @@
                 @endcan
                @can('الصلاحيات')
                <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
+                <a href="{{route('role')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>الصلاحيات </p>
                 </a>
               </li>
                @endcan
 
-              <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>التقارير </p>
-                </a>
-              </li>
+
 
 
 

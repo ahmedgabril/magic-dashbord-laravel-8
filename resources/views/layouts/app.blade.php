@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}">
 
   <!--<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
+  @livewireStyles
 
 
   <style>
@@ -76,7 +77,6 @@
        }
        </style>
 
-  @livewireStyles
 
 
 
@@ -126,9 +126,9 @@
   </footer>-->
 </div>
 <!-- ./wrapper -->
-<script src="/plugins/jquery/jquery.min.js"></script>
 
 @livewireScripts
+<script src="/plugins/jquery/jquery.min.js"></script>
 
 <!-- jQuery -->
 <script src="/js/app.js"></script>
@@ -147,7 +147,7 @@ $(".loader").on("load",function(){
    @if (session()->has('message'))
    const Toast = Swal.mixin({
   toast: true,
-  position: 'top-end',
+  position: 'top-start',
   showConfirmButton: false,
   timer: 4500,
   timerProgressBar: true,
@@ -186,7 +186,6 @@ Swal.fire({
 <!-- jQuery Knob Chart -->
 {{--}}
 <script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
-<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
 
 
 <!-- Tempusdominus Bootstrap 4 -->
@@ -194,10 +193,13 @@ Swal.fire({
 <!-- Summernote -->
 <!-- overlayScrollbars -->
 {{--}}
+<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
 
 @stack('scripts')
 
 <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<script src="/plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -207,7 +209,6 @@ Swal.fire({
 <script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <script src="/plugins/chart.js/Chart.min.js"></script>
 <script src="/dist/js/demo.js"></script>
-<script src="dist/js/pages/dashboard2.js"></script>
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 

@@ -28,7 +28,7 @@ Route::group(['middelware'=>['auth']],function () {
 
 
     Route::get('/home',Home::class)->name('home');
-    Route::get('/roles',Getrole::class)->name('roles');
+    Route::get('/roles',Getrole::class)->name('role');
     Route::get('/user',Getuser::class)->name('getuser');
 
     });

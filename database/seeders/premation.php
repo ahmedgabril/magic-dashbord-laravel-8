@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\PermissionRegistrar;
 
@@ -15,22 +17,48 @@ class premation extends Seeder
      */
     public function run()
     {
-       /* app()[PermissionRegistrar::class]->forgetCachedPermissions();
+        // Reset cached roles and permissions
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-    $getpremation = [
+
+        // create permissions
+      $getpremation = [
         'اداره اصدار الترخيص',
         'اصدار التراخيص',
-        'تقارير',
         'النماذج',
         'انشاء نموذج',
-        'المستخدمين',
+        'تقارير',
+        'المستخدمين والصلاحيات',
         'اداره المستخدمين',
         'الصلاحيات',
-        'الاعدادات'
+        'الاعدادت',
        ];
        foreach( $getpremation as $getpre){
 
         Permission::create(['name'=> $getpre]);
-       }*/
+       }
+
+
+        // create roles and assign existing permissions
+        $role1 = Role::create(['name' => 'owner']);
+
+        $role1->givePermissionTo($getpremation);
+
+        $role2 = Role::create(['name' => 'admin']);
+        $role2->givePermissionTo("الاعدادت");
+
+        $user = \App\Models\User::factory()->create([
+            'name' => 'Example Admin User',
+            'email' => 'admin@test.com',
+            'password' => bcrypt('admin'),
+        ]);
+        $user->assignRole($role2);
+
+        $user = \App\Models\User::factory()->create([
+            'name' => 'Ahmed Gabril',
+            'email' => 'owner@test.com',
+            'password' => bcrypt('owner'),
+        ]);
+        $user->assignRole($role1);
     }
 }
