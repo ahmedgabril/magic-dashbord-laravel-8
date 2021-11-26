@@ -13,7 +13,7 @@
               <img src="https://nafezly-production.s3.eu-west-3.amazonaws.com/uploads/avatars/small/18986_1637229275_619622dbd6dfe.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-              <a href="#" class="d-block">{{substr(auth()->user()->name,0,20)}}</a>
+              <a href="#" class="d-block"></a>
             </div>
           </div>
       <!-- SidebarSearch Form -->
@@ -132,11 +132,11 @@
                 </a>
               </li>
                 @endcan
-               @can('الصلاحيات')
+               @can('الوظائف')
                <li class="nav-item">
                 <a href="{{route('role')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>الصلاحيات </p>
+                  <p>الوظائف </p>
                 </a>
               </li>
                @endcan

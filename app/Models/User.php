@@ -10,8 +10,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
     use HasRoles;
+    use HasFactory, Notifiable;
+
 
     protected $fillable = [
         'name',

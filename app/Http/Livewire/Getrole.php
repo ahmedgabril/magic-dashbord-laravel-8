@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\PermissionRegistrar;
 
@@ -14,20 +15,20 @@ class Getrole extends Component
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['getval','delete'];
     protected $queryString = ['searsh'=> ['except' => '']];
-    public $realidfordelete ;
+    public $idfordelete ;
     public $dispatechupdate = "add" ;
     public $getpaginateindex;
-
+     public $globalids;
     public $showmodelf = false;
     public $orderby = 'desc';
     public $pagenate = 10;
     public $searsh;
-    public $handelprem;
+
     public $name,$prename = [];
 
     public function render()
     {
-       //app()[PermissionRegistrar::class]->forgetCachedPermissions();
+       app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $role = Role::query()
 
@@ -76,7 +77,7 @@ class Getrole extends Component
 
     $this->dispatchBrowserEvent("show-model");
  //$this->modeltitle = true;
-
+ $this->reset();
 
 
  }
@@ -107,14 +108,8 @@ class Getrole extends Component
         $addrole->name = $this->name;
         $addrole->save();
         $addrole->givePermissionTo($this->prename);
-        /*
-        $this->handelprem = $addrole;
-    foreach ($this->prename as $getpremation){
-        $this->handelprem->givePermissionTo($getpremation);
 
-    }*/
-
-   $this->reset();
+       $this->reset();
 
     $this->dispatchBrowserEvent("add",['message'=> "تمت  اضافه البيانات بنجاح 🙂"]);
     //$this->dispatchBrowserEvent("resid");
@@ -132,55 +127,38 @@ class Getrole extends Component
 return  redirect()->back();
 }
 
-/*
 public function edit($bid){
     $this->showmodelf= true;
     if($this->showmodelf){
         $this->dispatchBrowserEvent("show-model");
         $this->globalids = $bid;
-        $getdata = genry::findOrFail($bid);
-        $this->gen_number = $getdata->gen_number;
-        $this->gen_date_start = $getdata->gen_date_start;
-        $this->gen_date_end = $getdata->gen_date_end;
-        $this->prensh_id = $getdata->prensh_id;
-        $this->gen_des =  $getdata->gen_des;
-        $this->gen_status =  $getdata->gen_status;
-
-
+        $getrole = Role::findOrFail($bid);
+        $this->name = $getrole->name;
+        $this->prename = $getrole->permissions->pluck('name','id');
 
     }
     //
 
 }
 
-
 public function showdes($bid){
 
-    $getdata = genry::findOrFail($bid);
-    $this->gen_number = $getdata->gen_number;
-    $this->gen_date_start = $getdata->gen_date_start;
-    $this->gen_date_end = $getdata->gen_date_end;
-    $this->prensh_id = $getdata->prensh_id;
-    $this->gen_des =  $getdata->gen_des;
-    $this->gen_status =  $getdata->gen_status;
+
+    $getrole = Role::findOrFail($bid);
+    $this->name = $getrole->name;
+    $this->prename = $getrole->permissions->pluck('name','id');
 
 }
-
 public function updateone(){
+
     $this->validate([
-        'gen_number' => 'required|unique:genries,gen_number,'.$this->globalids,
-        'gen_date_start' => 'required',
-        'prensh_id' => 'required',
-
-
+        'name' => 'required|unique:roles,name,'.$this->globalids,
 
     ],[
 
-  "gen_number.required" => "رقم الرحله مطلوب",
-  "gen_number.unique" => "رقم الرحله مسجل من قبل",
-  "gen_date_start.required" => "تاريخ  الرحله مطلوب ",
+  "name.required" => "اسم الوظيفه مطلوب",
+  "name.unique" => "اسم الوظيفه مسجل من قبل",
 
-  "prensh_id.required" => "اسم الفرع مطلوب",
 
 
 
@@ -188,37 +166,25 @@ public function updateone(){
 
 
 
-  $updatedata = genry::findOrFail($this->globalids);
-  $updatedata->gen_number =   $this->gen_number;
-  $updatedata->gen_des = $this->gen_des;
-  $updatedata->gen_date_start = $this->gen_date_start;
-  $updatedata->prensh_id = $this->prensh_id;
- $updatedata->gen_status  = $this->gen_status;
+  $updaterole = Role::findOrFail($this->globalids);
+  $updaterole->name = $this->name;
+  $updaterole->save();
+  $updaterole->syncPermissions($this->prename);
 
-
-   if(  $updatedata->gen_status == 2){
-    $updatedata->gen_date_end = Carbon::today();
-
-   }else {
-    $updatedata->gen_date_end = null;
-   }
-
-
-  $updatedata->save();
   $this->dispatchBrowserEvent("add",['message'=> "تمت  تحديث البيانات بنجاح 🙂"]);
   // session()->flash("message", "تم اضافه بيانات الفرع  بنجاح ");
-  $this->resetval();
-
+  $this->reset();
+  /*
    $getlog = new loge();
    $getlog->loges_action_id =  $updatedata->id;
    $getlog->loges_action_type =  "تعديل بيانات  رحله";
    $getlog->loges_action_by = auth()->user();
    $getlog->loges_action_des = "تم اضافه التعديل  من قبل ".auth()->user();
    $getlog->save();
-
+*/
 }
 public function getcurantid($getcurantid){
-$this->realidfordelete = $getcurantid;
+$this->idfordelete = $getcurantid;
 $this->dispatchBrowserEvent("getconfirm",['title'=> 'هل انت متأكد ??','message'=> 'لن تتمكن من استرجاع البيانات مره اخرى !']);
 
 
@@ -226,17 +192,19 @@ $this->dispatchBrowserEvent("getconfirm",['title'=> 'هل انت متأكد ??',
 public function delete(){
 
 
-    genry::destroy($this->realidfordelete);
+    Role::destroy($this->idfordelete);
     $this->dispatchBrowserEvent("getdel",['message'=> "تمت  حذف  البيانات بنجاح 🙂"]);
+    /*
     $getlog = new loge();
     $getlog->loges_action_id =  $this->realidfordelete;
     $getlog->loges_action_type =  "حذف  بيانات رحله";
     $getlog->loges_action_by = auth()->user();
     $getlog->loges_action_des = "تمت عمليه الحذف من قبل ".auth()->user();
     $getlog->save();
+    */
 }
 
-*/
+
 
 public function getval()
 {

@@ -30,7 +30,7 @@ class premation extends Seeder
         'تقارير',
         'المستخدمين والصلاحيات',
         'اداره المستخدمين',
-        'الصلاحيات',
+        'الوظائف',
         'الاعدادت',
        ];
        foreach( $getpremation as $getpre){

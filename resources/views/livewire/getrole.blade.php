@@ -111,7 +111,7 @@
                             <th>ID</th>
                             <th> اسم الوظيفه</th>
                             <th> تاريخ الانشاء</th>
-                            <th> <i class="fas fa-cogs"></i></th>
+                            <th><i class="fas fa-wrench"></i></th>
 
                           </tr>
                         </thead>
@@ -139,12 +139,13 @@
 
                                         <div class="btn-group">
                                           <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-wrench"></i>
-                                          </button>
+                                             <i class="fas fa-cogs"></i>
+
+                                        </button>
 
                                           <div class="dropdown-menu dropdown-menu-right" role="menu" style="">
                                             <a href="#"   class="dropdown-item" data-target="#modal-showdes" data-toggle="modal" wire:click.prevent="showdes({{$getdata->id}})" >
-                                                <i style="margin-left: 4px;" class="fa fa-eye text-primary"></i>
+                                                <i  class="fa fa-eye text-primary"></i>
                                                 صلاحيات الوظيفه
                                             </a>
                                             <a href="#"  class="dropdown-item" wire:click.prevent="edit({{$getdata->id}})" >
@@ -245,6 +246,10 @@
 
               <div class=" col-sm-12 form-group" wire:ignore>
 
+                <div class=" col-12  pl-0  text-bold text-primary">
+                    الصلاحيات
+                </div>
+
                  @foreach ($getpre as $index=> $item)
                  <div class=" col-6 icheck-success d-inline pl-0">
                     <label>
@@ -277,7 +282,59 @@
   </div>
 </div>
 <!--end model add-->
+<!--model show description -->
 
+<div class="modal fade"  wire:ignore.self id="modal-showdes" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-body">
+
+            <form>
+               <div class="row">
+
+
+                 <div class="col-sm-12 form-group">
+                    <label for="">اسم الوظيفه</label>
+                      <input disabled class="form-control" type="text" wire:model="name" placeholder="(اجبارى*)اسم الوظيفه  "/>
+
+
+                 </div>
+                 <div class=" col-sm-12 form-group" wire:ignore>
+
+                   <div class=" col-12  pl-0  text-bold text-primary">
+                       الصلاحيات
+                   </div>
+
+                    @foreach ($getpre as $index=> $item)
+                    <div class=" col-6 icheck-success d-inline pl-0">
+                       <label>
+                           {{$item->name}}
+                       </label>
+                       <input disabled wire:model="prename.{{$item->id}}" value="{{$item->id}}" type="checkbox">
+
+                     </div>
+                    @endforeach
+
+                 </div>
+
+
+
+
+
+        <div class="justify-content-sm-center modal-footer">
+
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="ml-2 fa fa-times"></i> الغاء</button>
+        </div>
+      </div>
+    </form>
+      </div>
+      <!--modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</div>
+<!--end model show-->
 
 
         </div><!--end mainrow-->
@@ -376,7 +433,7 @@ window.addEventListener('add',function(event){
 window.addEventListener('show-model',function(){
   $("#modal-role").modal("show");
 });
-/*
+
 window.addEventListener("getconfirm",function(event){
       Swal.fire({
       title: event.detail.title,
@@ -392,12 +449,12 @@ window.addEventListener("getconfirm",function(event){
         livewire.emit('delete')
       }
     })
-});
+})
 
 window.addEventListener("getdel",function(event){
-
-toast: true,
-  position: 'top-start',
+    const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
   showConfirmButton: false,
   timer: 4500,
   timerProgressBar: true,
@@ -405,13 +462,21 @@ toast: true,
     toast.addEventListener('mouseenter', Swal.stopTimer)
     toast.addEventListener('mouseleave', Swal.resumeTimer)
   }
-  Toast.fire({
+})
+
+Toast.fire({
+  icon: 'success',
+  title:   event.detail.message
+})
+  /*  Swal.fire({
+  position: 'top-start',
   icon: 'success',
   title: event.detail.message,
-
-  })
+  showConfirmButton: false,
+  timer: 3000
+})*/
 });
-*/
+
 });
 </script>
 @endpush

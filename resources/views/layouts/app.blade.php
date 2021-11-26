@@ -147,7 +147,7 @@ $(".loader").on("load",function(){
    @if (session()->has('message'))
    const Toast = Swal.mixin({
   toast: true,
-  position: 'top-start',
+  position: 'top-end',
   showConfirmButton: false,
   timer: 4500,
   timerProgressBar: true,
