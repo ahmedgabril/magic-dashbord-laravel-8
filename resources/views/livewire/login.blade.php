@@ -1,10 +1,12 @@
-<div>
+<div style="margin-top: 100px">
 
     <div class="login-logo">
     <a href="../../index2.html"><b>ahmed</b>gbril</a>
   </div>
+
+
   <!-- /.login-logo -->
-  <div class="card">
+  <div class="card" style="min-width: 450px;max-width:450">
     <div class="card-body login-card-body">
       <p class="login-box-msg">سجل الدخول لتبداء رحلتك</p>
 
@@ -75,17 +77,20 @@
     </div>
     <!-- /.login-card-body -->
   </div>
+
 <div>
 @push('sc')
+
 <script>
   $(function() {
- Livewire.on('errorhand',function(event){
+    window.addEventListener('errorhand',function(event){
+
 
 
 Swal.fire({
 icon: 'error',
 title: 'Oops...',
-text: 'البيانات المدخله غير صحيحه',
+text: 'البيانات المدخله غير صحيحه او ربما تم ايفاق حسابك',
 
 //footer: '<a href="">Why do I have this issue?</a>'
 });
@@ -94,8 +99,23 @@ text: 'البيانات المدخله غير صحيحه',
 
 
   });
+/*
+  Livewire.on('statuserror',function(event){
 
 
+Swal.fire({
+icon: 'info',
+title: 'تنبيه',
+text: 'تم ايقاف حسابك راجع الادره  لمعرفه السبب',
+
+//footer: '<a href="">Why do I have this issue?</a>'
+});
+
+
+
+
+  });
+  */
   });
 </script>
  @endpush

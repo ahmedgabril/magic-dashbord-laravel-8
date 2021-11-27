@@ -51,16 +51,16 @@ class Login extends Component
         ]);
    // Auth::attempt();
 
-    if (Auth::attempt(['email' => $this->data['email'], 'password' => $this->data['password']], $this->data['remember_token'])) {
+    if (Auth::attempt(['email' => $this->data['email'], 'password' => $this->data['password'],'status'=>1], $this->data['remember_token'])) {
         $log = auth()->user()->name;
         session()->regenerate();
 
-        return redirect()->route('home')->with("message",$log);
+        return redirect()->route('backend')->with("message",$log);
 
     }
 
 
-  $this->emit("errorhand");
+  $this->dispatchBrowserEvent("errorhand");
 
 
   }

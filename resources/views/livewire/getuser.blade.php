@@ -1,7 +1,7 @@
 <div>
 
     <div class="content-header">
-        <div class="container-fluid">
+        <div class="container">
           <div class="row mb-2">
             <div class="col-sm-4">
               <h1 class="m-0">اداره الوظائف</h1>
@@ -23,7 +23,7 @@
 
 
    <section class="content">
-       <div class="container-fluid">
+       <div class="container">
         <div class="row">
             <div class="col-md-12">
               <div class="card">
@@ -125,15 +125,15 @@
                             @forelse($data as $index => $getdata )
                           <tr>
 
-                            <td>{{ $data->firstItem() + $index}}</td>
+                            <td style="width: 40px">{{ $data->firstItem() + $index}}</td>
                             <td>{{ $getdata->name }}</td>
 
                             </td>
 
 
 
-                            <td>{{ $getdata->created_at->format('Y/m/d') }}</td>
-                            <td><span class="{{$getdata->status == 0 ? 'badge badge-danger':'badge badge-success'}}">{{ $getdata->status == 0 ?'مفعل':'غير مفعل'}}</span></td>
+                            <td >{{ $getdata->created_at->format('Y/m/d') }}</td>
+                            <td><span class='badge {{$getdata->status == 1 ?"badge-success":"badge-danger" }}'>{{$getdata->status == 1?"مفعل":"غير مفعل"}}</span></td>
 
 
 
@@ -237,14 +237,17 @@
           </button>
         </div>
         <div class="modal-body">
-            <form wire:submit.prevent="{{!$showmodelf ? 'add' :'updateone'}}" novalidate>
+            <form  wire:submit.prevent="{{!$showmodelf ? 'add' :'updateone'}}" novalidate="novalidate">
 
            <div class="row">
                  <div class="col-sm-6 form-group">
                  <label for="">اسم المستخدم</label>
                    <input class="form-control @error("form.name")  is-invalid
 
-                  @enderror" type="text" wire:model="form.name" placeholder="(اجبارى*)اسم المستخدم"/>
+                  @enderror"  type="text"
+                   wire:model="form.name"
+
+                    placeholder="(اجبارى*)اسم المستخدم"/>
                    @error('form.name')
                   <div class="invalid-feedback">
                    {{$message}}
@@ -255,9 +258,10 @@
               </div>
               <div class="col-sm-6 form-group">
                 <label >البريد الالكترونى </label>
-                  <input type="email" class="form-control @error("email") is-invalid @enderror"
-
-                         autocomplete=" "
+                  <input type="email"  name ="email" id="exampleInputEmail1"class="form-control @error("email") is-invalid @enderror"
+                  aria-describedby="exampleInputEmail1-error"
+                         autocomplete="off"
+                         aria-invalid="true"
                    wire:model="email" placeholder="(اجبارى*)"/>
 
 
@@ -269,12 +273,14 @@
                  @enderror
 
              </div>
+             @if (!$showmodelf)
              <div class="col-sm-6 form-group">
                 <label> كلمه السر </label>
                   <input class="form-control @error("form.password")  is-invalid
                  @enderror"
                  type="password" wire:model="form.password"
-                  placeholder="(اجبارى*)"/>
+
+                  placeholder="{{!$showmodelf? '(اجبارى*)':''}}"/>
                   @error('form.password')
                  <div class="invalid-feedback">
                   {{$message}}
@@ -283,24 +289,12 @@
                  @enderror
 
              </div>
+
+             @endif
+
+
+
              <div class="col-sm-6 form-group">
-                <label for=""> تاكيد كلمه السر </label>
-                  <input class="form-control @error("form.password_confirmation")  is-invalid
-                 @enderror"
-                 type="password" wire:model="form.password_confirmation"
-                  placeholder="(اجبارى*)"/>
-                  @error('form.password_confirmation')
-                 <div class="invalid-feedback">
-                  {{$message}}
-                </div>
-
-                 @enderror
-
-             </div>
-
-
-
-             <div class="col-sm-12 form-group">
                 <label > حاله الحساب </label>
                    <div class="@error("form.status")  is-invalid @enderror">
 
@@ -329,6 +323,23 @@
 
              </div>
 
+             <div class=" col-sm-12 form-group" >
+
+                <div class=" col-12  pl-0 mb-2 text-bold text-primary">
+                    الوظائف
+                </div>
+
+                 @foreach ($getrole as $index=> $item)
+                 <div class=" col-6 icheck-success d-inline pl-0">
+                    <label>
+                        {{$item->name}}
+                    </label>
+                    <input  wire:model="rolename.{{$item->id}}" value="{{$item->id}}" type="checkbox">
+
+                  </div>
+                 @endforeach
+
+              </div>
 
 
         <div class="justify-content-sm-center modal-footer">
@@ -352,59 +363,103 @@
   </div>
 </div>
 <!--end model add-->
-<!--model show description -->
-{{--}}
-<div class="modal fade modal-lg"  wire:ignore.self id="modal-showdes" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
+
+        <div class="modal fade bd-example-modal-xl" wire:ignore.self id="modal-showdes" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
 
         <div class="modal-body">
-
             <form>
-               <div class="row">
+
+           <div class="row">
+                 <div class="col-sm-4 form-group">
+                 <label for="">اسم المستخدم</label>
+                   <input class="form-control" type="text" readonly wire:model="form.name" placeholder="(اجبارى*)اسم المستخدم"/>
+
+              </div>
+              <div class="col-sm-4 form-group">
+                <label >البريد الالكترونى </label>
+                  <input  type="text"  name ="email" class="form-control"
+
+                   readonly
+                   wire:model="email"/>
+
+             </div>
 
 
-                 <div class="col-sm-12 form-group">
-                    <label for="">اسم الوظيفه</label>
-                      <input disabled class="form-control" type="text" wire:model="name" placeholder="(اجبارى*)اسم الوظيفه  "/>
 
 
-                 </div>
-                 <div class=" col-sm-12 form-group" wire:ignore>
+             <div class="col-sm-4 form-group">
+                <label > حاله الحساب </label>
+                   <div>
+                    <div class='badge {{$form["status"] == 1 ?"badge-success":"badge-danger" }}'>{{$form["status"]== 1?"مفعل":"غير مفعل"}}</div>
 
-                   <div class=" col-12  pl-0  text-bold text-primary">
-                       الصلاحيات
                    </div>
 
-                    @foreach ($getpre as $index=> $item)
-                    <div class=" col-6 icheck-success d-inline pl-0">
-                       <label>
-                           {{$item->name}}
-                       </label>
-                       <input disabled wire:model="prename.{{$item->id}}" value="{{$item->id}}" type="checkbox">
+
+
+             </div>
+
+             <div class=" col-sm-12 form-group" >
+
+                <div  class=" col-sm-12 text-center pl-0 pt-4 mb-4 text-bold text-primary">
+                    الوظائف الحاصل عليها هذا المستخدم
+                </div>
+                <div class="row">
+                 @foreach ($rolename as $index=> $item)
+
+                    <div class="col-sm-4 ">
+
+                        <span class="text-bold">
+                         {{$index+1}} - {{$item}}
+                         </span>
+
+                  </div>
+                 @endforeach
+
+              </div>
+
+              <div class=" col-sm-12 form-group" >
+
+                <div class=" col-sm-12 text-center pl-0 pt-4 mb-4 text-bold text-success">
+                    الصلاحيات الحاصل عليها هذا المستخدم
+                </div>
+
+
+                 <div class="row ">
+                    @foreach ($getprem as $index=> $item)
+                     <div class="col-sm-4 ">
+
+                           <span class="text-bold">
+                            {{$index+1}} - {{$item->name}}
+                            </span>
 
                      </div>
-                    @endforeach
+                     @endforeach
 
-                 </div>
-
-
+                  </div>
 
 
+              </div>
 
         <div class="justify-content-sm-center modal-footer">
 
+
+
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="ml-2 fa fa-times"></i> الغاء</button>
         </div>
-      </div>
+
+
+      </div><!--endrow-->
     </form>
       </div>
-      <!--modal-content -->
+      <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
   </div>
 </div>
-{{--}}
+<!--model show description -->
+
 <!--end model show-->
 
 
@@ -415,72 +470,10 @@
    </section>
 
 </div>
-@push('styles')
-{{--}}
-
-<link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
 
 
-<style>
-    .gethandel{
-    margin-top: auto;
-    margin-right: auto;
-    font-size: 13px;
-    position: absolute;
-    top: 63px;
-    left: auto;
-    right: 251px;
-    }
-    @media (max-width: 575px){
-        .gethandel{
-    margin-top: auto;
-    margin-right: auto;
-    font-size: 13px;
-    position: absolute;
-    top: 137px;
-    left: auto;
-    right: 9px;
- }
-}
-
-</style>
-{{--}}
-@endpush
 
 @push('scripts')
-{{--}}
-<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
-
-     $('#reservationdate').datetimepicker({
-      defaultDate: "2021/10/17",
-      format: 'yyy/MM/DD',
-      locale :'Ar'
-        });
-
-       $('.select2').select2();
-
-       $('.select2bs4').select2({
-        theme: 'bootstrap4',
-        placeholder: "---",
-        allowClear: true
-       });
-       Livewire.hook('message.processed', (message, component) => {
-        $('.select2').select2();
-       })
-       $(".select2bs4").on("change",function(){
-
-        @this.set("prensh_id", $(this).val());
-       });
-
-        $("#reservationdate").on("change.datetimepicker",function(){
-
-        @this.set("gen_date_start", $('.getval').val());
-       });
-
-    });
-
-{{--}}
 
 <script>
     $(document).ready(function() {
@@ -492,14 +485,30 @@
 
 window.addEventListener('add',function(event){
   $("#modal-role").modal("hide");
+  const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 4500,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 
+Toast.fire({
+  icon: 'success',
+  title:   event.detail.message
+})
+/*
   Swal.fire({
   position: 'top-start',
   icon: 'success',
   title: event.detail.message,
   showConfirmButton: false,
   timer: 3000
-})
+})*/
 })
 window.addEventListener('show-model',function(){
   $("#modal-role").modal("show");

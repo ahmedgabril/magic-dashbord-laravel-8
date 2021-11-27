@@ -1,9 +1,11 @@
 <?php
 
+//use App\Http\Livewire\Dashbord;
+
+use App\Http\Livewire\Backend;
+use App\Http\Livewire\Login;
 use App\Http\Livewire\Getrole;
 use App\Http\Livewire\Getuser;
-use App\Http\Livewire\Home;
-use App\Http\Livewire\Login;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,17 +24,25 @@ Route::get('/', function () {
     return view('auth/login');
 });
 */
+Auth::routes();
 
 Route::get('/',login::class)->name('login')->middleware('guest');
-Route::group(['middelware'=>['auth']],function () {
+Route::get('/login',login::class)->name('login')->middleware('guest');
+
+Route::get('/backend',Backend::class)->name('backend')->middleware('auth');
+Route::group(['middleware' =>['permission:المستخدمين والصلاحيات اداره المستخدمين']],function () {
 
 
-    Route::get('/home',Home::class)->name('home');
-    Route::get('/roles',Getrole::class)->name('role');
     Route::get('/user',Getuser::class)->name('getuser');
 
     });
+    Route::group(['middleware' =>['permission:المستخدمين والصلاحيات الوظائف']],function () {
 
+
+        Route::get('/roles',Getrole::class)->name('role');
+
+
+        });
 
 //Auth::routes();
 

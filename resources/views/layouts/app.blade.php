@@ -84,7 +84,6 @@
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed control-sidebar-slide-open" cz-shortcut-listen="true" style="direction:rtl ;text-align:right!important">
     <div class="loader disaper">
-        <div class="text-light" style="margin-right:-97px">انتظر ثوانى...</div>
         <img  src="/dist/img/pre3.gif" alt="ahmedgabril" height="170" width="170" >
 
      </div>
@@ -136,11 +135,13 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
 <script>
 
   $(function() {
-
+    bsCustomFileInput.init();
 $(".loader").on("load",function(){
     $(this).addClass("disaper");
  });
@@ -208,6 +209,7 @@ Swal.fire({
 <script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
 <script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <script src="/plugins/chart.js/Chart.min.js"></script>
+<script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="/dist/js/demo.js"></script>
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

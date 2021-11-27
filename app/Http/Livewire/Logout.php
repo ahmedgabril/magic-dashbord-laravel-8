@@ -14,9 +14,10 @@ class Logout extends Component
         return view('livewire.logout');
     }
     public function logout(){
-        Session::flush();
 
         Auth::logout();
-        return redirect()->to('/');
+        Session::flush();
+        session()->regenerate();
+        return redirect('/login');;
     }
 }
