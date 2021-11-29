@@ -82,8 +82,8 @@
 
 </head>
 
-<body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed control-sidebar-slide-open" cz-shortcut-listen="true" style="direction:rtl ;text-align:right!important">
-    <div class="loader disaper">
+<body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed control-sidebar-slide-open" cz-shortcut-listen="true" style="direction:rtl ;text-align:right!important;margin:3px!important">
+    <div class="loader disaper flex-column justify-content-center align-items-center">
         <img  src="/dist/img/pre3.gif" alt="ahmedgabril" height="170" width="170" >
 
      </div>
@@ -106,23 +106,26 @@
     <!-- /.content-header -->
     <div class="content-wrapper" style="min-height: 269px;">
       <!-- Content Header (Page header) -->
+     <main>
+
+
 
       <!-- /.content-header -->
       @yield('content')
      {{$slot}}
 
       <!-- Main content -->
-
+    </main>
       <!-- /.content -->
     </div>
   <!-- /.content-wrapper -->
- <!-- <footer class="main-footer">
+  <footer class="main-footer">
     <strong>Copyright &copy; 2020-2021 <a href="#">ahmed-gabril.</a>**phone:+201092586526</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.1.0
     </div>
-  </footer>-->
+  </footer>
 </div>
 <!-- ./wrapper -->
 
@@ -131,9 +134,13 @@
 
 <!-- jQuery -->
 <script src="/js/app.js"></script>
+<script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 
+<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+@stack('scripts')
 <!-- jQuery UI 1.11.4 -->
 <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -194,15 +201,12 @@ Swal.fire({
 <!-- Summernote -->
 <!-- overlayScrollbars -->
 {{--}}
-<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
 
-@stack('scripts')
 
-<script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
 <script src="/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <script src="/plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script src="/plugins/raphael/raphael.min.js"></script>
@@ -210,6 +214,8 @@ Swal.fire({
 <script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <script src="/plugins/chart.js/Chart.min.js"></script>
 <script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="/dist/js/adminlte.js"></script>
+
 <script src="/dist/js/demo.js"></script>
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

@@ -33,6 +33,8 @@
                   <div class="row">
                       <div class="col-12">
                         <div class="card-tools">
+                          <!--  <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
+                            </button>-->
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                               <i class="fas fa-minus"></i>
                             </button>
@@ -75,16 +77,16 @@
 
 
 
-              <div class="col-sm-3 form-group " style="margin-top:32px">
+              <div class="col-sm-3 form-group " style="margin-top:32px" wire:ignore>
 
-                <select class="custom-select" wire:model="orderby">
-                    <option value="asc" {{ $orderby == 'asc'? 'selected':'' }}>من الاقدم </option>
-                    <option value="desc"  {{ $orderby == 'desc'? 'selected':'' }}>من الاحدث  </option>
+                <select class="custom-select" wire:model="sortDirections">
+                    <option value="asc" {{ $sortDirections == 'asc'? 'selected':'' }}>من الاقدم </option>
+                    <option value="desc"  {{ $sortDirections == 'desc'? 'selected':'' }}>من الاحدث  </option>
 
                   </select>
                 </div>
 
-                <div class="col-sm-2 form-group"style="margin-top:32px" >
+                <div class="col-sm-2 form-group"style="margin-top:32px" wire:ignore>
 
                     <select class="custom-select" wire:model="pagenate">
                       <option selected>5</option>
@@ -364,8 +366,8 @@
 </div>
 <!--end model add-->
 
-        <div class="modal fade bd-example-modal-xl" wire:ignore.self id="modal-showdes" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
+        <div class="modal fade " wire:ignore.self id="modal-showdes" style="disply:none" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
       <div class="modal-content">
 
         <div class="modal-body">
@@ -402,15 +404,15 @@
 
              <div class=" col-sm-12 form-group" >
 
-                <div  class=" col-sm-12 text-center pl-0 pt-4 mb-4 text-bold text-primary">
-                    الوظائف الحاصل عليها هذا المستخدم
+                <div  class=" col-sm-12 text-center pl-0  mb-4 text-bold role">
+                    <span> الوظائف الحاصل عليها هذا المستخدم</span>
                 </div>
                 <div class="row">
                  @foreach ($rolename as $index=> $item)
 
                     <div class="col-sm-4 ">
 
-                        <span class="text-bold">
+                        <span class="">
                          {{$index+1}} - {{$item}}
                          </span>
 
@@ -421,7 +423,7 @@
 
               <div class=" col-sm-12 form-group" >
 
-                <div class=" col-sm-12 text-center pl-0 pt-4 mb-4 text-bold text-success">
+                <div class=" col-sm-12 text-center pl-0  mb-4 text-bold role">
                     الصلاحيات الحاصل عليها هذا المستخدم
                 </div>
 
@@ -430,7 +432,7 @@
                     @foreach ($getprem as $index=> $item)
                      <div class="col-sm-4 ">
 
-                           <span class="text-bold">
+                           <span class="">
                             {{$index+1}} - {{$item->name}}
                             </span>
 

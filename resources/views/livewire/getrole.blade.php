@@ -300,23 +300,28 @@
 
 
                  </div>
-                 <div class=" col-sm-12 form-group" wire:ignore>
+                 <div class=" col-sm-12 text-center pl-0  mb-4 text-bold role">
+                    الصلاحيات الحاصله عليها هذه الوظيفه
+                </div>
 
-                   <div class=" col-12  pl-0  text-bold text-primary">
-                       الصلاحيات
-                   </div>
 
+                 <div class="row ">
                     @foreach ($getpre as $index=> $item)
-                    <div class=" col-6 icheck-success d-inline pl-0">
-                       <label>
-                           {{$item->name}}
-                       </label>
-                       <input disabled wire:model="prename.{{$item->id}}" value="{{$item->id}}" type="checkbox">
+                     <div class="col-sm-4 ">
+
+                           <span class="">
+                            {{$index+1}} - {{$item->name}}
+                            </span>
 
                      </div>
-                    @endforeach
+                     @endforeach
 
-                 </div>
+                  </div>
+
+
+              </div>
+
+
 
 
 

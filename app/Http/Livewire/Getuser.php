@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Http\mytraits\WithSorting;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,20 +14,29 @@ use Spatie\Permission\PermissionRegistrar;
 
 class Getuser extends Component
 {
+    use WithSorting;
     use WithPagination;
-
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['getval','delete'];
     protected $queryString = ['searsh'=> ['except' => '']];
+    protected $queryStringWithSorting = [
+        'sortByany' => ['except' => 'id'],
+        'sortDirections' => ['except' => 'asc'],
+        'pagenate' => ['except' => ''],
+
+
+    ];
     public $idfordelete ;
+    public $pagenate = 5;
     public $dispatechupdate = "add" ;
     public $getpaginateindex;
      public $globalids;
     public $showmodelf = false;
-    public $orderby = 'desc';
-    public $pagenate = 10;
+    public $sortDirections = 'asc';
+    public $sortByany = 'id';
     public $searsh;
     public $email;
+
     public $rolename = [],$getprem=[];
 
     public $form = [
@@ -45,9 +55,9 @@ class Getuser extends Component
         ->where("name","LIKE", "%" . $this->searsh . "%")
         ->Orwhere("email","LIKE", "%" . $this->searsh . "%")
         //->Orwhere("status","LIKE", "%" . $this->searsh . "%")
-        ->orderBy("id",$this->orderby)
-        ->latest()
-        ->paginate($this->pagenate);
+        ->orderBy($this->sortByany,$this->sortDirections)
+
+        ->paginate($this->pagenate)->withQueryString();
         return view('livewire.getuser', ['data'=> $user,
 
         "counts" => User::count(),
@@ -63,6 +73,12 @@ class Getuser extends Component
  public function updatedsearsh(){
     $this->resetPage();
  }
+ public function updatedpagenate(){
+    $this->resetPage();
+ }
+
+
+
 
 
  public function updated($propertyName)
@@ -142,7 +158,6 @@ class Getuser extends Component
         $this->reset();
     $this->dispatchBrowserEvent("add",['message'=> "تمت  اضافه البيانات بنجاح 🙂"]);
 
-    return  redirect()->back();
 
 /*
     $getlog = new loge();

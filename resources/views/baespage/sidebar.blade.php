@@ -13,7 +13,8 @@
               <img src="https://nafezly-production.s3.eu-west-3.amazonaws.com/uploads/avatars/small/18986_1637229275_619622dbd6dfe.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-              <a href="#" class="d-block"></a>
+              <a href="#" class="d-block">{{auth()->user()->name}}</a>
+
             </div>
           </div>
       <!-- SidebarSearch Form -->
@@ -160,15 +161,16 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
+                <a href="{{route('setting')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>اداره البرنامج</p>
+                  <p> الاعدادت العامه</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
+                <a href="#
+                " class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>تقارير</p>
+                  <p>اعدادت مخصصه</p>
                 </a>
               </li>
 
