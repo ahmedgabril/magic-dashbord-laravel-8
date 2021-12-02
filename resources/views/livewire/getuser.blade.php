@@ -1,12 +1,13 @@
 <div>
 
-    <div class="content-header">
-        <div class="container">
-          <div class="row mb-2">
+
+       <div class="container">
+
+        <div class="row mb-4">
             <div class="col-sm-4">
-              <h1 class="m-0">اداره الوظائف</h1>
+              <h1 class="m-0">اداره المستخدمين</h1>
             </div><!-- /.col -->
-            <div class="col-sm-8">
+            <div class="col-sm-8 mt-2">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item active"><a class="ml-3" href="/home">الرئيسه</a>/</li>
 
@@ -14,19 +15,15 @@
                 <li class="breadcrumb-item active"> <a href="{{route('role')}}">الوظائف</a></li>
 
                 <li class="breadcrumb-item active"> <a href="{{route('getuser')}}">المستخدمين</a></li>
+                <li class="breadcrumb-item active"> <a href="{{route('setting')}}">الاعدادت</a></li>
 
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
 
-
-   <section class="content">
-       <div class="container">
         <div class="row">
             <div class="col-md-12">
-              <div class="card">
+              <div class="app-card  h-100 shadow-sm">
                 <div class="card-header">
 
 
@@ -55,7 +52,7 @@
                           </div><!--enddivclassaction-->
                       </div>
 
-                    <div class=" col-sm-3 form-group" style="margin-top:32px">
+                    <div class=" col-sm-2 form-group" style="margin-top:29px;padding:4px">
                         <button type="button"  wire:click.prevent="showmodel"
                         class="btn btn-block btn-outline-success"><i class="fas fa-plus-circle"></i>
                          اضافه مستخدم </button>
@@ -63,7 +60,7 @@
 
 
 
-                        <div class="input-group input-group-sm col-sm-4"
+                        <div class=" col-sm-4"
                         style="margin-top:32px; border-right: 1px !important;">
 
                           <input class="form-control form-control-navbar"
@@ -79,16 +76,16 @@
 
               <div class="col-sm-3 form-group " style="margin-top:32px" wire:ignore>
 
-                <select class="custom-select" wire:model="sortDirections">
-                    <option value="asc" {{ $sortDirections == 'asc'? 'selected':'' }}>من الاقدم </option>
+                <select class="form-select form-select-md  d-inline-flex" wire:model="sortDirections">
+                    <option value="asc" {{$sortDirections == 'asc'? 'selected':'' }}>من الاقدم </option>
                     <option value="desc"  {{ $sortDirections == 'desc'? 'selected':'' }}>من الاحدث  </option>
 
                   </select>
                 </div>
 
-                <div class="col-sm-2 form-group"style="margin-top:32px" wire:ignore>
+                <div class="col-sm-2 form-group" style="margin-top:32px" wire:ignore>
 
-                    <select class="custom-select" wire:model="pagenate">
+                    <select class="form-select form-select-md  d-inline-flex" wire:model="pagenate">
                       <option selected>5</option>
                         <option >10</option>
                         <option> 20</option>
@@ -108,7 +105,7 @@
                 <div class="card-body" style="display: block;">
                   <div class="row">
 
-                    <table class="table table-head-fixed text-nowrap table-striped table-hover">
+                    <table class="table text-nowrap table-striped table-hover">
                         <thead>
                           <tr>
                             <th>ID</th>
@@ -183,9 +180,9 @@
                           @empty
                           <tr class="text-center" style="background-color: rgb(235 79 79)!important;">
                           <td colspan="5" style="height:33px">
-                            <p class="text-center text-light"style="font-size:15px">لاتوجد  نتائج</p>
+                            <p class="text-center text-white"style="font-size:15px">لاتوجد  نتائج</p>
 
-                            <img src="{{ asset('dist/img/empty.svg') }}" style= "width: 69px; height: 33px;">
+                            <img src="{{ asset('assets/img/empty.svg') }}" style= "width: 69px; height: 33px;">
 
                           </td>
                         </tr>
@@ -208,7 +205,7 @@
                   <div class="row">
                     <div class=" col-12  d-flex justify-content-sm-between ">
                         <div class="col-sm-8">{{$data->links()}}</div>
-                        <div class="col-sm-4 mt-2 shows" style="font-size: 13px">
+                        <div class="col-sm-4 mt-2 shows" style="font-size: 13px;margin-right:auto">
                          عرض <span class="text-success text-bold">{{ $data->firstItem() + $getpaginateindex}}</span> من اجمالى السجلات <span class="text-primary text-bold">{{ $counts }}</span>
 
                         </div>
@@ -223,8 +220,8 @@
           </div>
          </div><!--end col-12-->
             <!--model add -->
-  <div class="modal fade "  wire:ignore.self id="modal-role"  aria-hidden="true">
-    <div class="modal-dialog">
+  <div class=" modal fade " wire:ignore.self id="modal-role"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class=" modal-dialog modal-fullscreen-sm-down">
       <div class="modal-content">
         <div class="modal-header">
           @if (!$showmodelf)
@@ -234,7 +231,7 @@
 
           @endif
 
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button  class = "model-close"type="button"data-bs-dismiss="modal" aria-label="Close" >
             <span aria-hidden="true">×</span>
           </button>
         </div>
@@ -332,11 +329,11 @@
                 </div>
 
                  @foreach ($getrole as $index=> $item)
-                 <div class=" col-6 icheck-success d-inline pl-0">
+                 <div class=" col-6  d-inline pl-0">
                     <label>
                         {{$item->name}}
                     </label>
-                    <input  wire:model="rolename.{{$item->id}}" value="{{$item->id}}" type="checkbox">
+                    <input  wire:model="rolename.{{$item->id}}" value="{{$item->id}}" type="checkbox" style="margin: 5px;">
 
                   </div>
                  @endforeach
@@ -344,7 +341,7 @@
               </div>
 
 
-        <div class="justify-content-sm-center modal-footer">
+        <div class="modal-footer">
           @if (!$showmodelf)
           <button type="submit"  class="btn btn-primary"> <i class="ml-2 fa fa-save"></i> حفظ</button>
           @else
@@ -352,7 +349,7 @@
 
           @endif
 
-          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="ml-2 fa fa-times"></i> الغاء</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="ml-2 fa fa-times"></i> الغاء</button>
         </div>
 
 
@@ -423,7 +420,7 @@
 
               <div class=" col-sm-12 form-group" >
 
-                <div class=" col-sm-12 text-center pl-0  mb-4 text-bold role">
+                <div class=" col-sm-12 text-center pl-0 get-title mb-4 text-bold role">
                     الصلاحيات الحاصل عليها هذا المستخدم
                 </div>
 
@@ -448,7 +445,7 @@
 
 
 
-          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="ml-2 fa fa-times"></i> الغاء</button>
+          <button type="button" class="btn-danger" data-dismiss="modal"><i class="ml-2 fa fa-times"></i> الغاء</button>
         </div>
 
 
@@ -469,7 +466,7 @@
        </div> <!--end container-->
 
 
-   </section>
+
 
 </div>
 
@@ -478,13 +475,14 @@
 @push('scripts')
 
 <script>
-    $(document).ready(function() {
 
-  $('#modal-role,#modal-showdes').on('hidden.bs.modal',function () {
+
+$(function(){
+
+    $('#modal-role,#modal-showdes').on('hidden.bs.modal',function () {
         livewire.emit('getval');
 
      });
-
 window.addEventListener('add',function(event){
   $("#modal-role").modal("hide");
   const Toast = Swal.mixin({
@@ -557,8 +555,8 @@ Toast.fire({
   showConfirmButton: false,
   timer: 3000
 })*/
+  });
 });
 
-});
 </script>
 @endpush

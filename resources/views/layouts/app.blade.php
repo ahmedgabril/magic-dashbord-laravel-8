@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" style="height: auto">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ahmed gabril</title>
+    <title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- FontAwesome JS-->
+    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+
+    <!-- App CSS -->
+    <!--<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">-->
+
+    <link id="" rel="stylesheet" href="assets/css/rtl/dark.css"
+   media ="(prefers-color-scheme: dark)">
+    <link id="" rel="stylesheet" href="assets/css/rtl/light.css"
+     media ="(prefers-color-scheme: light)">
+
+
+
+
 
 
   @stack('styles')
 
-  <!-- Theme style -->
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-  <!-- Daterange picker -->
-
-
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-
-  <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}">
 
   <!--<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
   @livewireStyles
@@ -57,7 +63,7 @@
 
        }
        .disaper{
-           animation: pre 1.6s forwards;
+           animation: pre 1.2s forwards;
 
 
        }
@@ -82,76 +88,76 @@
 
 </head>
 
-<body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed control-sidebar-slide-open" cz-shortcut-listen="true" style="direction:rtl ;text-align:right!important;margin:3px!important">
-    <div class="loader disaper flex-column justify-content-center align-items-center">
-        <img  src="/dist/img/pre3.gif" alt="ahmedgabril" height="170" width="170" >
+<body class="app">
+
+     	 <div class="loader disaper flex-column justify-content-center align-items-center">
+        <img  src="assets/img/pre3.gif" alt="ahmedgabril" height="170" width="170" >
 
      </div>
-    <div class="wrapper">
-    <!-- Preloader -->
-    <!--
-    <div class="preloader flex-column justify-content-center align-items-center bg-dark">
-      <img class="animation__shake" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-    </div>
-  -->
 
-    <!-- BEGIN: Header-->
-    @include("baespage/navbar")
-
-      @include("baespage/sidebar")
-        <!-- Content Wrapper. Contains page content -->
 
 
 
-    <!-- /.content-header -->
-    <div class="content-wrapper" style="min-height: 269px;">
-      <!-- Content Header (Page header) -->
-     <main>
+    <!-- BEGIN: Header-->
+
+
+      @include("baespage/header")
+
+
+
+
+
+  <div class="app-wrapper">
+
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+
+
+
+
+
+           {{$slot}}
+
+
+
+
+
 
 
 
       <!-- /.content-header -->
-      @yield('content')
-     {{$slot}}
+
 
       <!-- Main content -->
-    </main>
-      <!-- /.content -->
-    </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2020-2021 <a href="#">ahmed-gabril.</a>**phone:+201092586526</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.1.0
-    </div>
-  </footer>
-</div>
-<!-- ./wrapper -->
 
+
+
+
+<!-- ./wrapper -->
+<footer class="app-footer">
+    <div class="container text-center py-3">
+         <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+    <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+
+    </div>
+</footer><!--//app-footer-->
 @livewireScripts
-<script src="/plugins/jquery/jquery.min.js"></script>
+   <!-- Javascript -->
+
+   <script src="/assets/plugins/jquery/jquery.min.js"></script>
+
+   <script type="text/javascript" src="{{asset('/js/app.js')}}"></script>
 
 <!-- jQuery -->
-<script src="/js/app.js"></script>
-<script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-
-<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-@stack('scripts')
-<!-- jQuery UI 1.11.4 -->
-<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
+
 <script>
 
-  $(function() {
-    bsCustomFileInput.init();
-$(".loader").on("load",function(){
-    $(this).addClass("disaper");
- });
+   $(function(){
+
+
+    $('.loader').addClass("disaper");
+
    @if (session()->has('message'))
    const Toast = Swal.mixin({
   toast: true,
@@ -182,43 +188,19 @@ Swal.fire({
   });
 </script>
 
-<!-- Bootstrap 4 -->
-<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- ChartJS -->
+@stack('scripts')
 
-
-<!-- JQVMap -->
-<!--<script src="/plugins/jqvmap/jquery.vmap.min.js"></script>-->
-<!--<script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>-->
-<!-- jQuery Knob Chart -->
+   <script src="/assets/plugins/popper.min.js"></script>
+   <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 {{--}}
-<script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
-
-
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<!-- overlayScrollbars -->
+   <!-- Charts JS -->
+   <script src="/assets/plugins/chart.js/chart.min.js"></script>
+   <script src="/assets/js/index-charts.js"></script>
 {{--}}
-
-
-
-<script src="/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-<script src="/plugins/bs-stepper/js/bs-stepper.min.js"></script>
-<!-- AdminLTE App -->
-<!-- AdminLTE for demo purposes -->
-<script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="/plugins/raphael/raphael.min.js"></script>
-<script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<script src="/plugins/chart.js/Chart.min.js"></script>
-<script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<script src="/dist/js/adminlte.js"></script>
-
-<script src="/dist/js/demo.js"></script>
-
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+   <!-- Page Specific JS -->
+   <script src="/assets/js/app.js"></script>
 
 </body>
 </html>
+

@@ -1,8 +1,7 @@
 <div>
 
-    <div class="content-header">
         <div class="container-fluid">
-          <div class="row mb-2">
+          <div class="row mb-4">
             <div class="col-sm-4">
               <h1 class="m-0">اداره الوظائف</h1>
             </div><!-- /.col -->
@@ -14,19 +13,16 @@
                 <li class="breadcrumb-item active"> <a href="{{route('role')}}">الوظائف</a></li>
 
                 <li class="breadcrumb-item active"> <a href="{{route('getuser')}}">المستخدمين</a></li>
+                <li class="breadcrumb-item active"> <a href="{{route('setting')}}">الاعدادت</a></li>
 
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
 
 
-   <section class="content">
-       <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-              <div class="card">
+              <div class="app-card  h-100 shadow-sm">
                 <div class="card-header">
 
 
@@ -53,7 +49,7 @@
                           </div><!--enddivclassaction-->
                       </div>
 
-                    <div class=" col-sm-3 form-group" style="margin-top:32px">
+                    <div class=" col-sm-2" style="margin-top:24px; padding:10px">
                         <button type="button"  wire:click.prevent="showmodel"
                         class="btn btn-block btn-outline-success"><i class="fas fa-plus-circle"></i>
                          اضافه وظيفه </button>
@@ -61,10 +57,10 @@
 
 
 
-                        <div class="input-group input-group-sm col-sm-4"
+                        <div class="col-sm-4"
                         style="margin-top:32px; border-right: 1px !important;">
 
-                          <input class="form-control form-control-navbar"
+                          <input class="form-control"
                           wire:model.debounce.200ms="searsh"
                           type="search" placeholder="بحث" aria-label="Search">
 
@@ -75,18 +71,18 @@
 
 
 
-              <div class="col-sm-3 form-group " style="margin-top:32px">
+              <div class="col-sm-3 form-group " style="margin-top:32px" wire:ignore>
 
-                <select class="custom-select" wire:model="orderby">
-                    <option value="asc" {{ $orderby == 'asc'? 'selected':'' }}>من الاقدم </option>
-                    <option value="desc"  {{ $orderby == 'desc'? 'selected':'' }}>من الاحدث  </option>
+                <select class="form-select form-select-md  d-inline-flex" wire:model="sortDirections">
+                    <option value="asc" {{ $sortDirections == 'asc'? 'selected':''}}>من الاقدم </option>
+                    <option value="desc"  {{ $sortDirections == 'desc'? 'selected':''}}>من الاحدث  </option>
 
                   </select>
                 </div>
 
                 <div class="col-sm-2 form-group"style="margin-top:32px" >
 
-                    <select class="custom-select" wire:model="pagenate">
+                    <select class="form-select form-select-md  d-inline-flex" wire:model="pagenate">
                       <option selected>5</option>
                         <option >10</option>
                         <option> 20</option>
@@ -173,9 +169,9 @@
                           @empty
                           <tr class="text-center" style="background-color: rgb(235 79 79)!important;">
                           <td colspan="5" style="height:33px">
-                            <p class="text-center text-light"style="font-size:15px">لاتوجد  نتائج</p>
+                            <p class="text-center text-white"style="font-size:15px">لاتوجد  نتائج</p>
 
-                            <img src="{{ asset('dist/img/empty.svg') }}" style= "width: 69px; height: 33px;">
+                            <img src="{{ asset('assets/img/empty.svg') }}" style= "width: 69px; height: 33px;">
 
                           </td></tr>
                           @endforelse
@@ -212,7 +208,7 @@
          </div><!--end col-12-->
             <!--model add -->
   <div class="modal fade"  wire:ignore.self id="modal-role"  aria-hidden="true">
-    <div class="modal-dialog">
+    <div class=" modal-dialog modal-fullscreen-sm-down">
       <div class="modal-content">
         <div class="modal-header">
           @if (!$showmodelf)
@@ -222,7 +218,7 @@
 
           @endif
 
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button  class = "model-close"type="button"data-bs-dismiss="modal" aria-label="Close" >
             <span aria-hidden="true">×</span>
           </button>
         </div>
@@ -246,16 +242,16 @@
 
               <div class=" col-sm-12 form-group" wire:ignore>
 
-                <div class=" col-12  pl-0  text-bold text-primary">
+                <div class=" col-12  pl-0 pt-2 text-bold text-primary">
                     الصلاحيات
                 </div>
 
                  @foreach ($getpre as $index=> $item)
-                 <div class=" col-6 icheck-success d-inline pl-0">
+                 <div class=" col-6  d-inline pl-0">
                     <label>
                         {{$item->name}}
                     </label>
-                    <input  wire:model="prename.{{$item->id}}" value="{{$item->id}}" type="checkbox">
+                    <input  wire:model="prename.{{$item->id}}" style="margin:10px" value="{{$item->id}}" type="checkbox">
 
                   </div>
                  @endforeach
@@ -271,7 +267,7 @@
 
           @endif
 
-          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="ml-2 fa fa-times"></i> الغاء</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="ml-2 fa fa-times"></i> الغاء</button>
         </div>
       </div>
     </form>
@@ -285,7 +281,7 @@
 <!--model show description -->
 
 <div class="modal fade"  wire:ignore.self id="modal-showdes" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
 
         <div class="modal-body">
@@ -300,7 +296,7 @@
 
 
                  </div>
-                 <div class=" col-sm-12 text-center pl-0  mb-4 text-bold role">
+                 <div class=" col-sm-12 text-center pl-0 get-title mb-4 text-bold role">
                     الصلاحيات الحاصله عليها هذه الوظيفه
                 </div>
 
@@ -322,11 +318,6 @@
               </div>
 
 
-
-
-
-
-
         <div class="justify-content-sm-center modal-footer">
 
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="ml-2 fa fa-times"></i> الغاء</button>
@@ -342,11 +333,9 @@
 <!--end model show-->
 
 
-        </div><!--end mainrow-->
        </div> <!--end container-->
 
 
-   </section>
 
 </div>
 @push('styles')
@@ -417,7 +406,7 @@
 {{--}}
 
 <script>
-    $(document).ready(function() {
+   $(function() {
 
   $('#modal-role,#modal-showdes').on('hidden.bs.modal',function () {
         livewire.emit('getval');
@@ -427,12 +416,21 @@
 window.addEventListener('add',function(event){
   $("#modal-role").modal("hide");
 
-  Swal.fire({
-  position: 'top-start',
-  icon: 'success',
-  title: event.detail.message,
+  const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
   showConfirmButton: false,
-  timer: 3000
+  timer: 4500,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'تم اضافه البيانات بنجاح'
 })
 })
 window.addEventListener('show-model',function(){

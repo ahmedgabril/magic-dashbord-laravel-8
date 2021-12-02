@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\mytraits\WithSorting;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
@@ -12,15 +13,25 @@ use Spatie\Permission\PermissionRegistrar;
 class Getrole extends Component
 {
     use WithPagination;
+    use WithSorting;
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['getval','delete'];
     protected $queryString = ['searsh'=> ['except' => '']];
+    protected $queryStringWithSorting = [
+        'sortByany' => ['except' => 'id'],
+        'sortDirections' => ['except' => 'asc'],
+        'pagenate' => ['except' => ''],
+
+
+    ];
     public $idfordelete ;
     public $dispatechupdate = "add" ;
     public $getpaginateindex;
      public $globalids;
     public $showmodelf = false;
-    public $orderby = 'desc';
+    public $sortDirections = 'asc';
+    public $sortByany = 'id';
+
     public $pagenate = 10;
     public $searsh;
 
@@ -34,7 +45,7 @@ class Getrole extends Component
 
         ->where("name","LIKE", "%" . $this->searsh . "%")
 
-        ->orderBy("id",$this->orderby)
+        ->orderBy($this->sortByany,$this->sortDirections)
         ->latest()
         ->paginate($this->pagenate);
         return view('livewire.getrole', ['data'=> $role ,
@@ -50,6 +61,10 @@ class Getrole extends Component
  public function updatedsearsh(){
     $this->resetPage();
  }
+ public function updatedpagenate(){
+    $this->resetPage();
+ }
+
 
 
  public function updated($propertyName)
@@ -69,7 +84,6 @@ class Getrole extends Component
 
  }
  public function showmodel(){
-    $this->showmodelf=false;
 
 
  if($this->showmodelf==false){

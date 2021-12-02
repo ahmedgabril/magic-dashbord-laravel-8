@@ -23,15 +23,16 @@ class premation extends Seeder
 
         // create permissions
       $getpremation = [
-        'اداره اصدار الترخيص',
-        'اصدار التراخيص',
-        'النماذج',
-        'انشاء نموذج',
-        'تقارير',
+        'الصفحه الرئيسه',
         'المستخدمين والصلاحيات',
         'اداره المستخدمين',
         'الوظائف',
         'الاعدادت',
+        'الاعدادت العامه',
+        'اعدادت المستخدمين',
+        'الاحصائات',
+        'المساعده',
+
        ];
        foreach( $getpremation as $getpre){
 
@@ -46,6 +47,8 @@ class premation extends Seeder
 
         $role2 = Role::create(['name' => 'admin']);
         $role2->givePermissionTo("الاعدادت");
+        $role2->givePermissionTo("الصفحه الرئيسه");
+
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Example Admin User',

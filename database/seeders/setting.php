@@ -16,13 +16,16 @@ class setting extends Seeder
     {
       DB::table('settings')->delete();
       $data =[
-     ['key'=> 'sitename','value'=>'one click'],
+     ['key'=> 'compnyname','value'=>'go dady'],
+     ['key'=> 'faks','value'=>'25021356'],
+     ['key'=> 'manger','value'=>'ahmed gabril'],
      ['key'=> 'phone','value'=>'01092586526'],
      ['key'=> 'address','value'=>'كفر الشيخ '],
      ['key'=> 'phone2','value'=>'01000000140'],
      ['key'=> 'email','value'=>'ahmed@gmail.com'],
      ['key'=> 'darkmode','value'=>'false'],
      ['key'=> 'sidebar','value'=>'open'],
+     ['key'=> 'sitename','value'=>'one click'],
      ['key'=> 'logo','value'=>'/dist/img/AdminLTELogo.png'],
 
       ];

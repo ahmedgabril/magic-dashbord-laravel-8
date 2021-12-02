@@ -22,7 +22,7 @@ class Getuser extends Component
     protected $queryStringWithSorting = [
         'sortByany' => ['except' => 'id'],
         'sortDirections' => ['except' => 'asc'],
-        'pagenate' => ['except' => ''],
+        'pagenate' => ['except' => '5'],
 
 
     ];
@@ -108,7 +108,6 @@ class Getuser extends Component
  }
  public function showmodel(){
     $this->showmodelf=false;
-
 
  if($this->showmodelf==false){
 

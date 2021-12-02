@@ -49,7 +49,12 @@ class Login extends Component
 
 
         ]);
-   // Auth::attempt();
+      Auth::attempt();
+     /* if (Auth::attempt(['email' => $this->data['email'], 'password' => $this->data['password'],'status'=>0])) {
+        $this->dispatchBrowserEvent("statuserror",['status' =>'تم ايقاف حسابك من قبل الاداره']);
+
+    }*/
+
 
     if (Auth::attempt(['email' => $this->data['email'], 'password' => $this->data['password'],'status'=>1], $this->data['remember_token'])) {
         $log = auth()->user()->name;
@@ -57,10 +62,14 @@ class Login extends Component
 
         return redirect()->route('backend')->with("message",$log);
 
+    }else{
+        $this->emit("errorhand");
+
     }
 
 
-  $this->dispatchBrowserEvent("errorhand");
+
+
 
 
   }
